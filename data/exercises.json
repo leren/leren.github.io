@@ -1,0 +1,6 @@
+{
+	"1": {
+		"phrase": "<subject#1:foo,bar> <verb#1>.",
+		"answer": "<verb#1> <subject#1:foo,bar>?"
+	}
+}

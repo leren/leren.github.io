@@ -1,0 +1,23 @@
+[
+	{
+		"verb": "lopen",
+		"first": "loop",
+		"third": "loopt",
+		"perfectum": "gelopen",
+		"tags": ["activity"]
+	},
+	{
+		"verb": "wandelen",
+		"first": "wandel",
+		"third": "wandelt",
+		"perfectum": "gewandeld",
+		"tags": ["activity"]
+	},
+	{
+		"verb": "fietsen",
+		"first": "fiets",
+		"third": "fietst",
+		"perfectum": "gefietst",
+		"tags": ["activity"]
+	}
+]

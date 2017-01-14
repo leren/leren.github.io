@@ -1,0 +1,49 @@
+{
+	"jongen": {
+		"root": {
+			"singular": "jongen",
+			"plural": "jongens"
+		},
+		"diminutive": {
+			"singular": "jongetje",
+			"plural": "jongetjes"
+		},
+		"person": "third",
+		"article": "de",
+		"allow": [],
+		"tags": ["person"]
+	},
+	"moeder": {
+		"root": {
+			"singular": "moeder",
+			"plural": "moeders"
+		},
+		"person": "third",
+		"article": "de",
+		"allow": ["possessive"],
+		"tags": ["person"]
+	},
+	"Nora": {
+		"root": {
+			"singular": "Nora"
+		},
+		"person": "third",
+		"tags": ["person"]
+	},
+	"ik": {
+		"root": {
+			"singular": "ik",
+			"plural": "wij"
+		},
+		"person": "first",
+		"tags": ["person"]
+	},
+	"jij": {
+		"root": {
+			"singular": "jij",
+			"plural": "jullie"
+		},
+		"person": "second",
+		"tags": ["person"]
+	}
+}

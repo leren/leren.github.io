@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Ramabhadra:400,500');
+/* Rancho, Overlock, Salsa, Ramabhadra, Englebert, Amatica? */
+
+h1, h2 {
+	font-family: 'Ramabhadra', sans-serif;
+}
+
+h1 {
+	font-size: 3rem;
+	font-weight: 400;
+}
+
+h2 {
+	font-size: 1.6rem;
+	font-weight: 400;
+}
+
+#exercise, #results_ {
+	display: none;
+}
+
+div.feedback {
+	opacity: 0;
+	display: inline-block;
+	padding-left: 2em;
+	transition-property: opacity;
+	transition-timing-function: ease-in;
+}

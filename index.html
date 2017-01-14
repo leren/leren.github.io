@@ -1,0 +1,77 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Bahasa</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="/css/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<section id="exercise">
+				<div class="row">
+					<div class="col s12">
+						<h1>Asking questions</h1>
+						<div class="right-align">
+							<div class="switch">
+								<label>
+									Grammar explanation
+									<input type="checkbox">
+									<span class="lever"></span>
+								</label>
+							</div>
+						</div>
+						<p>
+							The most basic sentence structure in Dutch is subject + verb.
+							To form a question, simply reverse these two.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<h2>Exercise</h2>
+						<p>Write the following sentence as a question.</p>
+						<p id="phrase" class="flow-text">Nora gaat vandaag hardlopen op het strand.</p>
+						<form action="">
+							<input id="answer" type="text">
+							<button type="submit" class="btn waves-effect">Check</button>
+							<div id="answer-feedback" class="feedback"><i class="material-icons left">done</i>Correct!</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<div id="results" class="modal">
+				<div class="modal-content">
+					<h2>Your answer is incorrect</h2>
+					<p>Your answer:</p>
+					<p id="answer-wrong" class="flow-text"></p>
+					<p>The correct answer:</p>
+					<p id="answer-correct" class="flow-text"></p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-action modal-close btn-flat waves-effect">Next</a>
+				</div>
+			</div>
+			<section id="results_">
+				<div class="row">
+					<div class="col s12">
+						<h2>Results</h2>
+						<p>Very good!</p>
+						<p>These are all valid ways to ask the question:</p>
+						<ul class="collection">
+							<li class="collection-item">Gaat Nora vandaag hardlopen op het strand?</li>
+							<li class="collection-item">Gaat Nora vandaag op het strand hardlopen?</li>
+							<li class="collection-item">Gaat Nora hardlopen op het strand vandaag?</li>
+							<li class="collection-item">Gaat Nora op het strand hardlopen vandaag?</li>
+						</ul>
+						<a class="btn"><i class="material-icons right">skip_next</i>Next</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+		<script src="https://kpdecker.github.io/jsdiff/diff.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>
