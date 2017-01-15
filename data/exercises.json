@@ -1,9 +1,32 @@
 {
-	"1": [{
-		"phrase": "<subject#1> <verb#1>.",
-		"answer": "<verb#1> <subject#1>?"
-	},{
-		"phrase": "<subject#1> <verb#1:zijn> <var#1:gelukkig|blij|vrolijk|druk|aan het werken|aan het spelen|aan het leren|aan het eten>.",
-		"answer": "<verb#1> <subject#1> <var#1>?"
-	}]
+	"1": [
+		{
+			"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:lachen|leren|spelen|lopen|rennen|eten|drinken|slapen>.",
+			"answer": "<verb#1> <subject#1>?"
+		},
+		{
+			"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:zijn> <var#1:vrolijk|blij|druk|moe>.",
+			"answer": "<verb#1> <subject#1> <var#1>?"
+		},
+		{
+			"phrase": "<subject#1:ik|jij|man> <verb#1:zijn> <var#1:vrolijk|blij|gelukkig|druk|moe|aan het werk|aan het slapen|aan het lezen|aan het eten>.",
+			"answer": "<verb#1> <subject#1> <var#1>?"
+		},
+		{
+			"phrase": "<subject#1:ik|jij|man|vrouw|moeder> <verb#1:lachen|lopen|eten|drinken|werken|fietsen|wandelen|slapen>.",
+			"answer": "<verb#1> <subject#1>?"
+		},
+		{
+			"phrase": "<subject#1:jij> <verb#1:hebben> <var#1:honger|dorst|gegeten|gedronken|gelopen|gewerkt|geslapen>.",
+			"answer": "<verb#1> <subject#1> <var#1>?"
+		},
+		{
+			"phrase": "<subject#1:ik|jij|man|vrouw> <verb#1:hebben> <var#2:al|nog niet> <var#1:gegeten|gedronken|gekookt|geslapen>.",
+			"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
+		},
+		{
+			"phrase": "<subject#1:ik|jij|man|vrouw|jongen|meisje|kind|leerling> <verb#1:hebben> <var#2:veel|weinig> <var#1:gegeten|gedronken|geslapen|gedroomd|boeken gelezen>.",
+			"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
+		}
+	]
 }

@@ -4,28 +4,79 @@
 		"first": "ben",
 		"second": "bent",
 		"third": "is",
-		"perfectum": "gelopen",
-		"tags": ["activity"]
+		"perfectum": "geweest"
+	},
+	{
+		"verb": "hebben",
+		"first": "heb",
+		"second": "hebt",
+		"third": "heeft",
+		"perfectum": "gehad"
 	},
 	{
 		"verb": "lopen",
 		"first": "loop",
 		"third": "loopt",
-		"perfectum": "gelopen",
-		"tags": ["activity"]
+		"perfectum": "gelopen"
+	},
+	{
+		"verb": "rennen",
+		"first": "ren",
+		"third": "rent",
+		"perfectum": "gerend"
 	},
 	{
 		"verb": "wandelen",
 		"first": "wandel",
 		"third": "wandelt",
-		"perfectum": "gewandeld",
-		"tags": ["activity"]
+		"perfectum": "gewandeld"
 	},
 	{
 		"verb": "fietsen",
 		"first": "fiets",
 		"third": "fietst",
-		"perfectum": "gefietst",
-		"tags": ["activity"]
+		"perfectum": "gefietst"
+	},
+	{
+		"verb": "lachen",
+		"first": "lach",
+		"third": "lacht",
+		"perfectum": "gelachen"
+	},
+	{
+		"verb": "leren",
+		"first": "leer",
+		"third": "leert",
+		"perfectum": "geleerd"
+	},
+	{
+		"verb": "spelen",
+		"first": "speel",
+		"third": "speelt",
+		"perfectum": "gespeeld"
+	},
+	{
+		"verb": "eten",
+		"first": "eet",
+		"third": "eet",
+		"perfectum": "gegeten"
+	},
+	{
+		"verb": "drinken",
+		"first": "drink",
+		"third": "drinkt",
+		"perfectum": "gedronken"
+	},
+	{
+		"verb": "werken",
+		"first": "werk",
+		"third": "werkt",
+		"perfectum": "gewerkt"
+	},
+	{
+		"verb": "slapen",
+		"first": "slaap",
+		"third": "slaapt",
+		"perfectum": "geslapen"
 	}
 ]

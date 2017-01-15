@@ -9,9 +9,47 @@
 			"plural": "jongetjes"
 		},
 		"person": "third",
-		"article": "de",
-		"allow": [],
-		"tags": ["person"]
+		"article": "de"
+	},
+	"meisje": {
+		"root": {
+			"singular": "meisje",
+			"plural": "meisjes"
+		},
+		"person": "third",
+		"article": "het"
+	},
+	"kind": {
+		"root": {
+			"singular": "kind",
+			"plural": "kinderen"
+		},
+		"person": "third",
+		"article": "het"
+	},
+	"leerling": {
+		"root": {
+			"singular": "leerling",
+			"plural": "leerlingen"
+		},
+		"person": "third",
+		"article": "de"
+	},
+	"man": {
+		"root": {
+			"singular": "man",
+			"plural": "mannen"
+		},
+		"person": "third",
+		"article": "de"
+	},
+	"vrouw": {
+		"root": {
+			"singular": "vrouw",
+			"plural": "vrouwen"
+		},
+		"person": "third",
+		"article": "de"
 	},
 	"moeder": {
 		"root": {
@@ -19,31 +57,20 @@
 			"plural": "moeders"
 		},
 		"person": "third",
-		"article": "de",
-		"allow": ["possessive"],
-		"tags": ["person"]
-	},
-	"Nora": {
-		"root": {
-			"singular": "Nora"
-		},
-		"person": "third",
-		"tags": ["person"]
+		"article": "de"
 	},
 	"ik": {
 		"root": {
 			"singular": "ik",
 			"plural": "wij"
 		},
-		"person": "first",
-		"tags": ["person"]
+		"person": "first"
 	},
 	"jij": {
 		"root": {
 			"singular": "jij",
 			"plural": "jullie"
 		},
-		"person": "second",
-		"tags": ["person"]
+		"person": "second"
 	}
 }
