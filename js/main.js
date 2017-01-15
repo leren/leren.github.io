@@ -86,8 +86,18 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 		let type = element[1];
 
 		if (type === "subject") {
-			let key = subjectsIndex[Math.floor(Math.random() * subjectsIndex.length)];
-			let subject = makeSubject(subjects[key], ["plural", "diminutive"]);
+			let subject;
+
+			if (element[3]) {
+				let allowedSubjects = element[3].split("|");
+				let allowedSubject = allowedSubjects[Math.floor(Math.random() * allowedSubjects.length)];
+
+				subject = makeSubject(subjects[allowedSubject], ["plural", "diminutive"]);
+			} else {
+				let key = subjectsIndex[Math.floor(Math.random() * subjectsIndex.length)];
+				
+				subject = makeSubject(subjects[key], ["plural", "diminutive"]);
+			}
 
 			sentence = sentence.replace(element[0], subject.value);
 			subjectMap[element[2]] = subject;
@@ -97,7 +107,10 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 			let definition;
 
 			if (element[3]) {
-				definition = verbs.find(v => v.verb === element[3]);
+				let allowedVerbs = element[3].split("|");
+				let allowedVerb = allowedVerbs[Math.floor(Math.random() * allowedVerbs.length)];
+
+				definition = verbs.find(v => v.verb === allowedVerb);
 			} else {
 				definition = verbs[Math.floor(Math.random() * verbs.length)];
 			}
