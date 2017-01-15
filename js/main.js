@@ -24,8 +24,9 @@ let createExercise = data => {
 	let answerCorrectEl = document.querySelector("#answer-correct");
 	let answerFeedbackEl = document.querySelector("#answer-feedback");
 	let formEl = document.querySelector("form");
-	let phrase = makeRandomSentence(data.exercises["1"].phrase, data.subjects, data.verbs);
-	let answer = makeSentence(data.exercises["1"].answer, phrase.subjects, phrase.verbs).sentence;
+	let exercise = data.exercises["1"][Math.floor(Math.random() * data.exercises["1"].length)];
+	let phrase = makeRandomSentence(exercise.phrase, data.subjects, data.verbs);
+	let answer = makeSentence(exercise.answer, phrase.subjects, phrase.verbs, phrase.variables).sentence;
 
 	formEl.onsubmit = e => {
 		e.preventDefault();
@@ -79,6 +80,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 	let subjectsIndex = Object.keys(subjects);
 	let subjectMap = {};
 	let verbMap = {};
+	let varMap = {};
 
 	grammar.parameters.forEach(function(element) {
 		let type = element[1];
@@ -92,12 +94,27 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 		}
 
 		if (type === "verb") {
-			let definition = verbs[Math.floor(Math.random() * verbs.length)];
+			let definition;
+
+			if (element[3]) {
+				definition = verbs.find(v => v.verb === element[3]);
+			} else {
+				definition = verbs[Math.floor(Math.random() * verbs.length)];
+			}
+
 			let preferFirst = element.index < grammar.parameters.find(e => e[1] === "subject" && e[2] === element[2]).index;
 			let verb = makeVerb(definition, subjectMap[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
 			verbMap[element[2]] = verb;
+		}
+
+		if (type === "var") {
+			let variables = element[3].split("|");
+			let variable = variables[Math.floor(Math.random() * variables.length)];
+			
+			sentence = sentence.replace(element[0], variable);
+			varMap[element[2]] = variable;
 		}
 	}, this);
 
@@ -108,11 +125,12 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 	return {
 		sentence,
 		subjects: subjectMap,
-		verbs: verbMap
+		verbs: verbMap,
+		variables: varMap
 	};
 };
 
-let makeSentence = (grammarSource, subjects, verbs) => {
+let makeSentence = (grammarSource, subjects, verbs, variables) => {
 	let grammar = parseGrammar(grammarSource);
 	let sentence = grammar.source;
 
@@ -130,6 +148,12 @@ let makeSentence = (grammarSource, subjects, verbs) => {
 			let verb = makeVerb(verbs[element[2]], subjects[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
+		}
+
+		if (type === "var") {
+			let variable = variables[element[2]];
+
+			sentence = sentence.replace(element[0], variable);
 		}
 	}, this);
 
@@ -190,7 +214,7 @@ let makeSubject = (definition, modifiers = []) => {
 let makeVerb = (definition, subject, preferFirst) => {
 	var verb = subject.isPlural ? definition.verb
 		: subject.person === "first" ? definition.first
-		: subject.person === "second" ? (preferFirst ? definition.first : definition.third)
+		: subject.person === "second" ? (preferFirst ? definition.first : definition.second || definition.third)
 		: definition.third;
 
 	return {

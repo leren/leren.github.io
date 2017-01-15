@@ -1,6 +1,9 @@
 {
-	"1": {
-		"phrase": "<subject#1:foo,bar> <verb#1>.",
-		"answer": "<verb#1> <subject#1:foo,bar>?"
-	}
+	"1": [{
+		"phrase": "<subject#1> <verb#1>.",
+		"answer": "<verb#1> <subject#1>?"
+	},{
+		"phrase": "<subject#1> <verb#1:zijn> <var#1:gelukkig|blij|vrolijk|druk|aan het werken|aan het spelen|aan het leren|aan het eten>.",
+		"answer": "<verb#1> <subject#1> <var#1>?"
+	}]
 }

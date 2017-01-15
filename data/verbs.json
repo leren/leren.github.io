@@ -1,5 +1,13 @@
 [
 	{
+		"verb": "zijn",
+		"first": "ben",
+		"second": "bent",
+		"third": "is",
+		"perfectum": "gelopen",
+		"tags": ["activity"]
+	},
+	{
 		"verb": "lopen",
 		"first": "loop",
 		"third": "loopt",
