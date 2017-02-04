@@ -1,0 +1,25 @@
+{
+  "name": "bahasa",
+  "version": "1.0.0",
+  "description": "Learn a new language",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "ava tests/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leren/leren.github.io.git"
+  },
+  "author": "Niels van der Rest",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leren/leren.github.io/issues"
+  },
+  "homepage": "https://github.com/leren/leren.github.io#readme",
+  "devDependencies": {
+    "ava": "^0.17.0"
+  }
+}
