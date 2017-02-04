@@ -4,10 +4,14 @@ let conj = (pattern) => {
 	let infinitive = infinitivePattern.replace('-', '');
 	let infinitivePastPattern = groups[2];
 	let { stem, ending } = makeStem(infinitivePattern);
+	let second, third = null;
 
 	if (groups[3]) {
 		let parts = groups[3].split(',');
-		stem = parts[0];
+
+		stem = parts[0] || stem;
+		second = parts[1],
+		third = parts[2];
 	}
 
 	let stemPast = groups[4] || (stem + ending + 'e');
@@ -30,10 +34,18 @@ let conj = (pattern) => {
 	perfect = perfect.replace(/tt$/, 't');
 
 	return {
-		infinitive,
-		infinitivePast,
-		stem,
-		stemPast,
+		present: {
+			pl: infinitive,
+			sg: {
+				first: stem,
+				second: second || (stem + 't').replace(/tt$/, 't'),
+				third: third || (stem + 't').replace(/tt$/, 't')
+			}
+		},
+		past: {
+			pl: infinitivePast,
+			sg: stemPast
+		},
 		perfect
 	};
 };
