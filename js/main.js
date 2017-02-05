@@ -1,7 +1,8 @@
 Promise.all([
 	fetch("/data/exercises.json").then(response => response.json()),
 	fetch("/data/subjects.json").then(response => response.json()),
-	fetch("/data/verbs.json").then(response => response.json())
+	fetch("/data/verbs.json").then(response => response.json()),
+	fetch("/js/conjugation.js").then(response => response.text())
 ]).then(values => {
 	$('.modal').modal({
 		complete: () => createExercise(data)
@@ -12,7 +13,14 @@ Promise.all([
 		subjects: values[1],
 		verbs: values[2]
 	};
-	
+
+	let scriptEl = document.createElement("script");
+
+	scriptEl.textContent = values[3];
+	document.body.appendChild(scriptEl);
+
+	// Sentence idea: <subject#1> <aux#1:hebben> vandaag <verb#1:werken>
+
 	createExercise(data);
 });
 
@@ -110,7 +118,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 				let allowedVerbs = element[3].split("|");
 				let allowedVerb = allowedVerbs[Math.floor(Math.random() * allowedVerbs.length)];
 
-				definition = verbs.find(v => v.verb === allowedVerb);
+				definition = verbs.find(v => v.search(`^${allowedVerb}\\b`) === 0);
 			} else {
 				definition = verbs[Math.floor(Math.random() * verbs.length)];
 			}
@@ -225,17 +233,20 @@ let makeSubject = (definition, modifiers = []) => {
 };
 
 let makeVerb = (definition, subject, preferFirst) => {
-	var verb = subject.isPlural ? definition.verb
-		: subject.person === "first" ? definition.first
-		: subject.person === "second" ? (preferFirst ? definition.first : definition.second || definition.third)
-		: definition.third;
+	// Technically 2nd person always follows 1st person and is never related to 3rd person (e.g. willen).
+	// 2nd = 1st plus 't' when after subject
+	// 2nd = 1st when before subject
+	let conjugation = definition.conjugation || conj(definition);
+
+	let verb = subject.isPlural ? conjugation.present.pl
+		: subject.person === "first" ? conjugation.present.sg.first
+		: subject.person === "second" ? 
+			(preferFirst ? conjugation.present.sg.first : conjugation.present.sg.second || conjugation.present.sg.third)
+		: conjugation.present.sg.third;
 
 	return {
 		value: verb,
-		verb: definition.verb,
-		first: definition.first,
-		third: definition.third,
-		perfectum: definition.perfectum
+		conjugation: conjugation
 	};
 };
 

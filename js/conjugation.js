@@ -28,16 +28,16 @@ let conj = (pattern) => {
 		}
 	}
 
-	let perfect = infinitive;
+	let perfect;
 
-	// Not a single syllable
+	// Single syllable
 	if (soundsLike(infinitive, '^x+o+n$')) {
-		perfect = 'ge' + perfect;
+		perfect = 'ge' + infinitive;
 	} else {
-		perfect = ((/^(be-|ge-|ver-)/.test(pattern) ? '' : 'ge') + stem + ending);
+		perfect = ((/^(be-|ge-|ver-)/.test(pattern) ? '' : 'ge') + ((groups[2] || groups[4]) ? stemPast : stem) + ending);
 
-		// Remove double tt
-		perfect = perfect.replace(/tt$/, 't');
+		// Remove double dd and tt
+		perfect = perfect.replace(/([dt])\1$/, '$1');
 	}
 
 	perfect = groups[5] || perfect;

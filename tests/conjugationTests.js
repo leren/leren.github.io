@@ -31,6 +31,22 @@ let cases = [
 		perfect: 'geweest'
 	},
 	{
+		input: 'hebben~hadden|,,heeft',
+		present: {
+			pl: 'hebben',
+			sg: {
+				first: 'heb',
+				second: 'hebt',
+				third: 'heeft'
+			}
+		},
+		past: {
+			pl: 'hadden',
+			sg: 'had'
+		},
+		perfect: 'gehad'
+	},
+	{
 		input: 'willen|,,wil',
 		present: {
 			pl: 'willen',
@@ -431,7 +447,7 @@ let cases = [
 		perfect: 'gestaan'
 	},
 	{
-		input: 'kunnen~konden|kan,,kan~kon',
+		input: 'kunnen~konden|kan,,kan~kon|gekund',
 		present: {
 			pl: 'kunnen',
 			sg: {
