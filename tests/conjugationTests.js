@@ -15,7 +15,7 @@ let testConjugation = (t, expected) => {
 
 let cases = [
 	{
-		input: 'zijn~waren|ben,,is~was|geweest',
+		input: 'zijn~waren|ben,bent,is~was|geweest',
 		present: {
 			pl: 'zijn',
 			sg: {
@@ -365,9 +365,87 @@ let cases = [
 			sg: 'verloor'
 		},
 		perfect: 'verloren'
+	},
+	{
+		input: 'zien~zagen|~zag',
+		present: {
+			pl: 'zien',
+			sg: {
+				first: 'zie',
+				second: 'ziet',
+				third: 'ziet'
+			}
+		},
+		past: {
+			pl: 'zagen',
+			sg: 'zag'
+		},
+		perfect: 'gezien'
+	},
+	{
+		input: 'doen~deden||gedaan',
+		present: {
+			pl: 'doen',
+			sg: {
+				first: 'doe',
+				second: 'doet',
+				third: 'doet'
+			}
+		},
+		past: {
+			pl: 'deden',
+			sg: 'deed'
+		},
+		perfect: 'gedaan'
+	},
+	{
+		input: 'gaan~gingen',
+		present: {
+			pl: 'gaan',
+			sg: {
+				first: 'ga',
+				second: 'gaat',
+				third: 'gaat'
+			}
+		},
+		past: {
+			pl: 'gingen',
+			sg: 'ging'
+		},
+		perfect: 'gegaan'
+	},
+	{
+		input: 'staan~stonden',
+		present: {
+			pl: 'staan',
+			sg: {
+				first: 'sta',
+				second: 'staat',
+				third: 'staat'
+			}
+		},
+		past: {
+			pl: 'stonden',
+			sg: 'stond'
+		},
+		perfect: 'gestaan'
+	},
+	{
+		input: 'kunnen~konden|kan,,kan~kon',
+		present: {
+			pl: 'kunnen',
+			sg: {
+				first: 'kan',
+				second: 'kunt',
+				third: 'kan'
+			}
+		},
+		past: {
+			pl: 'konden',
+			sg: 'kon'
+		},
+		perfect: 'gekund'
 	}
 ];
 
-// Interesting cases: zien, doen, gaan, kunnen
-
-cases.forEach(c => test(`conjugation of '${c.infinitive}'`, testConjugation, c));
+cases.forEach(c => test(`conjugation of '${c.present.pl}'`, testConjugation, c));

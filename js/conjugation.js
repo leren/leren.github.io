@@ -4,12 +4,12 @@ let conj = (pattern) => {
 	let infinitive = infinitivePattern.replace('-', '');
 	let infinitivePastPattern = groups[2];
 	let { stem, ending } = makeStem(infinitivePattern);
-	let second, third = null;
+	let first, second, third;;
 
 	if (groups[3]) {
 		let parts = groups[3].split(',');
 
-		stem = parts[0] || stem;
+		first = parts[0];
 		second = parts[1],
 		third = parts[2];
 	}
@@ -28,18 +28,27 @@ let conj = (pattern) => {
 		}
 	}
 
-	let perfect = groups[5] || ((/^(be-|ge-|ver-)/.test(pattern) ? '' : 'ge') + stem + ending);
+	let perfect = infinitive;
 
-	// Remove double tt
-	perfect = perfect.replace(/tt$/, 't');
+	// Not a single syllable
+	if (soundsLike(infinitive, '^x+o+n$')) {
+		perfect = 'ge' + perfect;
+	} else {
+		perfect = ((/^(be-|ge-|ver-)/.test(pattern) ? '' : 'ge') + stem + ending);
+
+		// Remove double tt
+		perfect = perfect.replace(/tt$/, 't');
+	}
+
+	perfect = groups[5] || perfect;
 
 	return {
 		present: {
 			pl: infinitive,
 			sg: {
-				first: stem,
-				second: second || (stem + 't').replace(/tt$/, 't'),
-				third: third || (stem + 't').replace(/tt$/, 't')
+				first: first || stem,
+				second: second || (stem.replace(/([ao])$/, '$1$1') + 't').replace(/tt$/, 't'),
+				third: third || (stem.replace(/([ao])$/, '$1$1') + 't').replace(/tt$/, 't')
 			}
 		},
 		past: {
@@ -52,6 +61,11 @@ let conj = (pattern) => {
 
 let makeStem = pattern => {
 	let stem = pattern.replace(/en$/, '');
+
+	// Single syllable
+	if (soundsLike(pattern, '^x+o+n$')) {
+		stem = pattern.replace(/n$/, '');
+	}
 
 	if (stem[stem.length - 1] === stem[stem.length - 2]) {
 		stem = stem.substr(0, stem.length - 1);
