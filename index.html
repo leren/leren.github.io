@@ -8,20 +8,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-		<div class="container">
-			<section id="exercise">
-				<div class="row">
+		<header>
+			<nav class="deep-purple darken-4">
+				<div class="container">
+					<a class="brand-logo">Asking questions</a>
+					<a class="brand-logo right hide-on-large-only"><i class="material-icons">school</i></a>
+					<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+				</div>
+				<ul id="nav-mobile" class="side-nav fixed">
+					<li id="logo" class="center-align deep-purple-text text-darken-4"><i class="material-icons">school</i></li>
+					<li><a class="subheader">Verb basics</a></li>
+					<li><a href="#">Introduction</a></li>
+					<li><a href="#">Onvoltooid tegenwoordige tijd</a></li>
+					<li><a href="#">Onvoltooid verleden tijd</a></li>
+					<li><a href="#">Voltooid tegenwoordige tijd</a></li>
+					<li><div class="divider"></div></li>
+					<li><a href="#">Asking questions</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="container">
+				<div class="row section">
 					<div class="col s12">
-						<h1>Asking questions</h1>
-						<div class="right-align">
-							<div class="switch">
-								<label>
-									Grammar explanation
-									<input type="checkbox">
-									<span class="lever"></span>
-								</label>
-							</div>
-						</div>
 						<p>
 							The most basic sentence structure in Dutch is subject + verb.
 							To form a question, simply reverse these two.
@@ -40,39 +49,75 @@
 						</form>
 					</div>
 				</div>
-			</section>
-			<div id="results" class="modal">
-				<div class="modal-content">
-					<h2>Your answer is incorrect</h2>
-					<p>Your answer:</p>
-					<p id="answer-wrong" class="flow-text"></p>
-					<p>The correct answer:</p>
-					<p id="answer-correct" class="flow-text"></p>
-				</div>
-				<div class="modal-footer">
-					<a href="#!" class="modal-action modal-close btn-flat waves-effect">Next</a>
-				</div>
-			</div>
-			<section id="results_">
-				<div class="row">
-					<div class="col s12">
-						<h2>Results</h2>
-						<p>Very good!</p>
-						<p>These are all valid ways to ask the question:</p>
-						<ul class="collection">
-							<li class="collection-item">Gaat Nora vandaag hardlopen op het strand?</li>
-							<li class="collection-item">Gaat Nora vandaag op het strand hardlopen?</li>
-							<li class="collection-item">Gaat Nora hardlopen op het strand vandaag?</li>
-							<li class="collection-item">Gaat Nora op het strand hardlopen vandaag?</li>
-						</ul>
-						<a class="btn"><i class="material-icons right">skip_next</i>Next</a>
+				<div id="results" class="modal">
+					<div class="modal-content">
+						<h2>Your answer is incorrect</h2>
+						<p>Your answer:</p>
+						<p id="answer-wrong" class="flow-text"></p>
+						<p>The correct answer:</p>
+						<p id="answer-correct" class="flow-text"></p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close btn-flat waves-effect">Next</a>
 					</div>
 				</div>
-			</section>
-		</div>
+				<div id="expl-verb" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h2>Lopen</h2>
+						<table>
+							<thead>
+								<tr>
+									<th data-field="id">Person</th>
+									<th data-field="name">Present tense</th>
+									<th data-field="price">Past tense</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ik</td>
+									<td>loop</td>
+									<td>liep</td>
+								</tr>
+								<tr>
+									<td>jij</td>
+									<td>loopt</td>
+									<td>liep</td>
+								</tr>
+								<tr>
+									<td>hij/zij/het</td>
+									<td>loopt</td>
+									<td>liep</td>
+								</tr>
+								<tr>
+									<td>wij</td>
+									<td>lopen</td>
+									<td>liepen</td>
+								</tr>
+								<tr>
+									<td>jullie</td>
+									<td>lopen</td>
+									<td>liepen</td>
+								</tr>
+								<tr>
+									<td>zij (plural)</td>
+									<td>lopen</td>
+									<td>liepen</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close btn-flat waves-effect">Close</a>
+					</div>
+				</div>
+			</div>
+		</main>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 		<script src="https://kpdecker.github.io/jsdiff/diff.js"></script>
 		<script src="/js/main.js"></script>
+		<script>
+			$(document).ready(() => $(".button-collapse").sideNav());
+		</script>
 	</body>
 </html>

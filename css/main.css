@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Ramabhadra:400,500');
-/* Rancho, Overlock, Salsa, Ramabhadra, Englebert, Amatica? */
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px:400');
+/* Rancho, Overlock, Ramabhadra, Englebert, Amatica?, Sanchez, Slabo+27px */
 
-h1, h2 {
-	font-family: 'Ramabhadra', sans-serif;
+h1, h2,
+.brand-logo {
+	font-family: 'Slabo 27px', sans-serif;
 }
 
 h1 {
@@ -11,12 +12,37 @@ h1 {
 }
 
 h2 {
-	font-size: 1.6rem;
+	font-size: 2rem;
 	font-weight: 400;
 }
 
-#exercise, #results_ {
-	display: none;
+header,
+main,
+footer {
+	padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+	.container {
+		width: 85%
+	}
+}
+
+#logo i {
+	margin-top: 1rem;
+	font-size: 3rem;
+}
+
+main {
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 150ms;
 }
 
 div.feedback {

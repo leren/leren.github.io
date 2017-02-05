@@ -25,7 +25,7 @@ Promise.all([
 });
 
 let createExercise = data => {
-	let exerciseEl = document.querySelector("#exercise");
+	let mainEl = document.querySelector("main");
 	let phraseEl = document.querySelector("#phrase");
 	let answerEl = document.querySelector("#answer");
 	let answerWrongEl = document.querySelector("#answer-wrong");
@@ -58,8 +58,6 @@ let createExercise = data => {
 			createExercise(data);
 		} else {
 			answerEl.blur();
-			// answerWrongEl.innerText = answerEl.value;
-			// answerCorrectEl.innerText = answer;
 
 			answerWrongEl.innerHTML = diff
 				.filter(d => !d.added)
@@ -77,7 +75,7 @@ let createExercise = data => {
 
 	phraseEl.innerText = phrase.sentence;
 	// phraseEl.innerHTML += `<br>${answer}`;
-	exerciseEl.style.display = "inherit";
+	mainEl.style.opacity = 1;
 	answerEl.value = "";
 	answerEl.focus();
 };
