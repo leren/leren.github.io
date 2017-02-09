@@ -1,32 +1,54 @@
 {
-	"1": [
-		{
-			"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:lachen|leren|spelen|lopen|rennen|eten|drinken|slapen>.",
-			"answer": "<verb#1> <subject#1>?"
-		},
-		{
-			"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:zijn> <var#1:vrolijk|blij|druk|moe>.",
-			"answer": "<verb#1> <subject#1> <var#1>?"
-		},
-		{
-			"phrase": "<subject#1:ik|jij|man> <verb#1:zijn> <var#1:vrolijk|blij|gelukkig|druk|moe|aan het werk|aan het slapen|aan het lezen|aan het eten>.",
-			"answer": "<verb#1> <subject#1> <var#1>?"
-		},
-		{
-			"phrase": "<subject#1:ik|jij|man|vrouw|moeder> <verb#1:lachen|lopen|eten|drinken|werken|fietsen|wandelen|slapen>.",
-			"answer": "<verb#1> <subject#1>?"
-		},
-		{
-			"phrase": "<subject#1:jij> <verb#1:hebben> <var#1:honger|dorst|gegeten|gedronken|gelopen|gewerkt|geslapen>.",
-			"answer": "<verb#1> <subject#1> <var#1>?"
-		},
-		{
-			"phrase": "<subject#1:ik|jij|man|vrouw> <verb#1:hebben> <var#2:al|nog niet> <var#1:gegeten|gedronken|gekookt|geslapen>.",
-			"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
-		},
-		{
-			"phrase": "<subject#1:ik|jij|man|vrouw|jongen|meisje|kind|leerling> <verb#1:hebben> <var#2:veel|weinig> <var#1:gegeten|gedronken|geslapen|gedroomd|boeken gelezen>.",
-			"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
-		}
-	]
+	"home": {
+		"title": "Learning Dutch",
+		"intro": [
+			"Click on an underlined verb to learn more about it. So whenever you see a verb like <a data-verb=\"leren\">leren</a>, click on it to see information about its conjugations.",
+			"\n\n",
+			"Try it on these verbs to see how it works:",
+			"\n\n",
+			"* De kinderen <a data-verb=\"zijn\">zijn</a> vrolijk.\n",
+			"* <a data-verb=\"hebben\">Hebben</a> jullie trek in pannenkoeken?\n",
+			"* Ze <a data-verb=\"lopen\">liep</a> vanochtend op het strand.\n",
+			"* Hij <a data-verb=\"werken\">werkt</a> vijf dagen per week.\n"
+		]
+	},
+	"asking-questions": {
+		"title": "Asking questions",
+		"intro": [
+			"The most basic sentence structure in Dutch is subject + verb.",
+			"\n\n",
+			"To form a question, simply reverse these two."
+		],
+		"description": "Write the following sentence as a question.",
+		"questions": [
+			{
+				"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:lachen|leren|spelen|lopen|rennen|eten|drinken|slapen>.",
+				"answer": "<verb#1> <subject#1>?"
+			},
+			{
+				"phrase": "<subject#1:jongen|meisje|kind|leerling> <verb#1:zijn> <var#1:vrolijk|blij|druk|moe>.",
+				"answer": "<verb#1> <subject#1> <var#1>?"
+			},
+			{
+				"phrase": "<subject#1:ik|jij|man> <verb#1:zijn> <var#1:vrolijk|blij|gelukkig|druk|moe|aan het werk|aan het slapen|aan het lezen|aan het eten>.",
+				"answer": "<verb#1> <subject#1> <var#1>?"
+			},
+			{
+				"phrase": "<subject#1:ik|jij|man|vrouw|moeder> <verb#1:lachen|lopen|eten|drinken|werken|fietsen|wandelen|slapen>.",
+				"answer": "<verb#1> <subject#1>?"
+			},
+			{
+				"phrase": "<subject#1:jij> <verb#1:hebben> <var#1:honger|dorst|gegeten|gedronken|gelopen|gewerkt|geslapen>.",
+				"answer": "<verb#1> <subject#1> <var#1>?"
+			},
+			{
+				"phrase": "<subject#1:ik|jij|man|vrouw> <verb#1:hebben> <var#2:al|nog niet> <var#1:gegeten|gedronken|gekookt|geslapen>.",
+				"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
+			},
+			{
+				"phrase": "<subject#1:ik|jij|man|vrouw|jongen|meisje|kind|leerling> <verb#1:hebben> <var#2:veel|weinig> <var#1:gegeten|gedronken|geslapen|gedroomd|boeken gelezen>.",
+				"answer": "<verb#1> <subject#1> <var#2> <var#1>?"
+			}
+		]
+	}
 }

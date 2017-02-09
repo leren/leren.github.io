@@ -4,7 +4,9 @@ Promise.all([
 	fetch("/data/verbs.json").then(response => response.json()),
 	fetch("/js/conjugation.js").then(response => response.text())
 ]).then(values => {
-	$('.modal').modal({
+	$('.modal').modal();
+	
+	$('#results').modal({
 		complete: () => createExercise(data)
 	});
 
@@ -16,37 +18,61 @@ Promise.all([
 
 	let scriptEl = document.createElement("script");
 
+	window.verbs = values[2];
 	scriptEl.textContent = values[3];
 	document.body.appendChild(scriptEl);
+
+	window.onhashchange = () => createExercise(data);
 
 	// Sentence idea: <subject#1> <aux#1:hebben> vandaag <verb#1:werken>
 
 	createExercise(data);
 });
 
+let loaderEl = document.querySelector("#loader");
+let displayEls = document.querySelectorAll("*[data-display]");
+let markdown = new showdown.Converter()
+
 let createExercise = data => {
+	let hashMatch = window.location.hash.match(/^#\/(.+)$/);
+	let path = hashMatch && hashMatch[1] && hashMatch[1].replace(/\/$/, '') || "home";
 	let mainEl = document.querySelector("main");
+	let exerciseEl = document.querySelector("#exercise");
 	let phraseEl = document.querySelector("#phrase");
 	let answerEl = document.querySelector("#answer");
 	let answerWrongEl = document.querySelector("#answer-wrong");
 	let answerCorrectEl = document.querySelector("#answer-correct");
 	let answerFeedbackEl = document.querySelector("#answer-feedback");
 	let formEl = document.querySelector("form");
-	let exercise = data.exercises["1"][Math.floor(Math.random() * data.exercises["1"].length)];
-	let phrase = makeRandomSentence(exercise.phrase, data.subjects, data.verbs);
-	let answer = makeSentence(exercise.answer, phrase.subjects, phrase.verbs, phrase.variables).sentence;
+	let exercise = data.exercises[path];
+	let questions = exercise.questions;
+
+	exerciseEl.style.display = questions ? "block" : "none";
+
+	displayEls.forEach(el => {
+		let intro = exercise[el.dataset.display];
+
+		el.innerHTML = intro instanceof Array ? markdown.makeHtml(intro.join('')) : intro;
+		$(el).find("ul").addClass("collection").find("li").addClass("collection-item");
+	});
+
+	document.querySelectorAll("a[data-verb]").forEach(el => el.addEventListener("click", showVerb));
+	loaderEl.style.display = "none";
+
+	if (!questions) {
+		return;
+	}
+
+	let question = questions[Math.floor(Math.random() * questions.length)];
+	let phrase = makeRandomSentence(question.phrase, data.subjects, data.verbs);
+	let answer = makeSentence(question.answer, phrase.subjects, phrase.verbs, phrase.variables).sentence;
+
+	answer = answer[0].toUpperCase() + answer.substring(1);
 
 	formEl.onsubmit = e => {
 		e.preventDefault();
 
-		var diff = JsDiff.diffChars(answerEl.value, answer);
-
-		console.log(diff);
-
-		console.log("D: " + diff.filter(d => !d.added).map(d => d.value).join(""));
-		console.log("A: " + diff.filter(d => !d.removed).map(d => d.value).join(""));
-
-		if (answerEl.value === answer) {
+		if (answerEl.value.toLowerCase() === answer.toLowerCase()) {
 			answerFeedbackEl.style.transitionDuration = "100ms";
 			answerFeedbackEl.style.opacity = 1;
 
@@ -57,6 +83,13 @@ let createExercise = data => {
 			
 			createExercise(data);
 		} else {
+			let diff = JsDiff.diffChars(answerEl.value, answer);
+
+			console.log(diff);
+
+			console.log("D: " + diff.filter(d => !d.added).map(d => d.value).join(""));
+			console.log("A: " + diff.filter(d => !d.removed).map(d => d.value).join(""));
+
 			answerEl.blur();
 
 			answerWrongEl.innerHTML = diff
@@ -73,22 +106,64 @@ let createExercise = data => {
 		}
 	};
 
-	phraseEl.innerText = phrase.sentence;
+	phraseEl.innerHTML = phrase.sentenceHTML;
+	phraseEl.querySelectorAll("a[data-verb]").forEach(el => el.addEventListener("click", showVerb));
 	// phraseEl.innerHTML += `<br>${answer}`;
-	mainEl.style.opacity = 1;
 	answerEl.value = "";
 	answerEl.focus();
+};
+
+let showVerb = e => {
+	let infinitive = e.target.dataset.verb;
+	let verb = conj(verbs.find(v => v.search(`^${infinitive}\\b`) === 0));
+
+	verb.regularTenses = [];
+	verb.irregularTenses = [];
+
+	if (Object.values(verb.regular.present.sg).includes(false)) {
+		verb.irregularTenses.push("present");
+	} else {
+		verb.regularTenses.push("present");
+	}
+
+	if (Object.values(verb.regular.past).includes(false)) {
+		verb.irregularTenses.push("past");
+	} else {
+		verb.regularTenses.push("past");
+	}
+
+	if (!verb.regular.perfect) {
+		verb.irregularTenses.push("perfect");
+	} else {
+		verb.regularTenses.push("perfect");
+	}
+
+	verb.hasRegularTenses = !!verb.regularTenses.length;
+	verb.hasIrregularTenses = !!verb.irregularTenses.length;
+	verb.regularTenses = verb.hasIrregularTenses ? verb.regularTenses.join(" and ") + " tense" : "all tenses";
+	verb.irregularTenses = verb.hasRegularTenses ? verb.irregularTenses.join(" and ") + " tense" : "all tenses";
+
+	let html = Mustache.render(window.templates.verb, verb);
+	let modalEl = $($.parseHTML(html, document)).appendTo(document.body);
+
+	modalEl
+		.find(".tooltipped")
+		.tooltip()
+		.end()
+		.modal({ complete: () => modalEl.add(modalEl.nextAll(".material-tooltip")).remove() })
+		.modal("open");
 };
 
 let makeRandomSentence = (grammarSource, subjects, verbs) => {
 	let grammar = parseGrammar(grammarSource);
 	let sentence = grammar.source;
+	let sentenceHTML = grammar.source;
 	let subjectsIndex = Object.keys(subjects);
 	let subjectMap = {};
 	let verbMap = {};
 	let varMap = {};
 
-	grammar.parameters.forEach(function(element) {
+	grammar.parameters.forEach(element => {
 		let type = element[1];
 
 		if (type === "subject") {
@@ -106,6 +181,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 			}
 
 			sentence = sentence.replace(element[0], subject.value);
+			sentenceHTML = sentenceHTML.replace(element[0], subject.value);
 			subjectMap[element[2]] = subject;
 		}
 
@@ -125,6 +201,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 			let verb = makeVerb(definition, subjectMap[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
+			sentenceHTML = sentenceHTML.replace(element[0], `<a data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
 			verbMap[element[2]] = verb;
 		}
 
@@ -133,16 +210,16 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 			let variable = variables[Math.floor(Math.random() * variables.length)];
 			
 			sentence = sentence.replace(element[0], variable);
+			sentenceHTML = sentenceHTML.replace(element[0], variable);
 			varMap[element[2]] = variable;
 		}
 	}, this);
-
-	sentence = sentence[0].toUpperCase() + sentence.substr(1);
 
 	console.log(sentence);
 
 	return {
 		sentence,
+		sentenceHTML,
 		subjects: subjectMap,
 		verbs: verbMap,
 		variables: varMap
@@ -152,6 +229,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 let makeSentence = (grammarSource, subjects, verbs, variables) => {
 	let grammar = parseGrammar(grammarSource);
 	let sentence = grammar.source;
+	let sentenceHTML = grammar.source;
 
 	grammar.parameters.forEach(function(element) {
 		let type = element[1];
@@ -160,6 +238,7 @@ let makeSentence = (grammarSource, subjects, verbs, variables) => {
 			let subject = subjects[element[2]];
 
 			sentence = sentence.replace(element[0], subject.value);
+			sentenceHTML = sentenceHTML.replace(element[0], subject.value);
 		}
 
 		if (type === "verb") {
@@ -167,21 +246,22 @@ let makeSentence = (grammarSource, subjects, verbs, variables) => {
 			let verb = makeVerb(verbs[element[2]], subjects[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
+			sentenceHTML = sentenceHTML.replace(element[0], `<a data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
 		}
 
 		if (type === "var") {
 			let variable = variables[element[2]];
 
 			sentence = sentence.replace(element[0], variable);
+			sentenceHTML = sentenceHTML.replace(element[0], variable);
 		}
 	}, this);
-
-	sentence = sentence[0].toUpperCase() + sentence.substr(1);
 	
 	console.log(sentence);
 
 	return {
 		sentence,
+		sentenceHTML,
 		subjects,
 		verbs
 	};

@@ -11,6 +11,7 @@ let testConjugation = (t, expected) => {
 	t.is(result.past.pl, expected.past.pl);
 	t.is(result.past.sg, expected.past.sg);
 	t.is(result.perfect, expected.perfect);
+	t.deepEqual(result.regular, expected.regular);
 };
 
 let cases = [
@@ -28,7 +29,22 @@ let cases = [
 			pl: 'waren',
 			sg: 'was'
 		},
-		perfect: 'geweest'
+		perfect: 'geweest',
+		regular: {
+			present: {
+				sg: {
+					first: false,
+					second: false,
+					third: false
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'hebben~hadden|,,heeft',
@@ -44,7 +60,22 @@ let cases = [
 			pl: 'hadden',
 			sg: 'had'
 		},
-		perfect: 'gehad'
+		perfect: 'gehad',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: false
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'willen|,,wil',
@@ -60,7 +91,22 @@ let cases = [
 			pl: 'wilden',
 			sg: 'wilde'
 		},
-		perfect: 'gewild'
+		perfect: 'gewild',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: false
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'werken',
@@ -76,7 +122,22 @@ let cases = [
 			pl: 'werkten',
 			sg: 'werkte'
 		},
-		perfect: 'gewerkt'
+		perfect: 'gewerkt',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'lopen~liepen||gelopen',
@@ -92,7 +153,22 @@ let cases = [
 			pl: 'liepen',
 			sg: 'liep'
 		},
-		perfect: 'gelopen'
+		perfect: 'gelopen',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'eten~aten|~at|gegeten',
@@ -108,7 +184,22 @@ let cases = [
 			pl: 'aten',
 			sg: 'at'
 		},
-		perfect: 'gegeten'
+		perfect: 'gegeten',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'bellen',
@@ -124,7 +215,22 @@ let cases = [
 			pl: 'belden',
 			sg: 'belde'
 		},
-		perfect: 'gebeld'
+		perfect: 'gebeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'bedelen',
@@ -140,7 +246,22 @@ let cases = [
 			pl: 'bedelden',
 			sg: 'bedelde'
 		},
-		perfect: 'gebedeld'
+		perfect: 'gebedeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'be-delen',
@@ -156,7 +277,22 @@ let cases = [
 			pl: 'bedeelden',
 			sg: 'bedeelde'
 		},
-		perfect: 'bedeeld'
+		perfect: 'bedeeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'halen',
@@ -172,7 +308,22 @@ let cases = [
 			pl: 'haalden',
 			sg: 'haalde'
 		},
-		perfect: 'gehaald'
+		perfect: 'gehaald',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'voelen',
@@ -188,7 +339,22 @@ let cases = [
 			pl: 'voelden',
 			sg: 'voelde'
 		},
-		perfect: 'gevoeld'
+		perfect: 'gevoeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'openen',
@@ -204,7 +370,22 @@ let cases = [
 			pl: 'openden',
 			sg: 'opende'
 		},
-		perfect: 'geopend'
+		perfect: 'geopend',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'regenen',
@@ -220,7 +401,22 @@ let cases = [
 			pl: 'regenden',
 			sg: 'regende'
 		},
-		perfect: 'geregend'
+		perfect: 'geregend',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'be-kennen',
@@ -236,7 +432,22 @@ let cases = [
 			pl: 'bekenden',
 			sg: 'bekende'
 		},
-		perfect: 'bekend'
+		perfect: 'bekend',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'beteren',
@@ -252,7 +463,22 @@ let cases = [
 			pl: 'beterden',
 			sg: 'beterde'
 		},
-		perfect: 'gebeterd'
+		perfect: 'gebeterd',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'menen',
@@ -268,7 +494,22 @@ let cases = [
 			pl: 'meenden',
 			sg: 'meende'
 		},
-		perfect: 'gemeend'
+		perfect: 'gemeend',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'ver-gaderen',
@@ -284,7 +525,22 @@ let cases = [
 			pl: 'vergaderden',
 			sg: 'vergaderde'
 		},
-		perfect: 'vergaderd'
+		perfect: 'vergaderd',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'oefenen',
@@ -300,7 +556,22 @@ let cases = [
 			pl: 'oefenden',
 			sg: 'oefende'
 		},
-		perfect: 'geoefend'
+		perfect: 'geoefend',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'uiten',
@@ -316,7 +587,22 @@ let cases = [
 			pl: 'uitten',
 			sg: 'uitte'
 		},
-		perfect: 'geuit'
+		perfect: 'geuit',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'wandelen',
@@ -332,7 +618,22 @@ let cases = [
 			pl: 'wandelden',
 			sg: 'wandelde'
 		},
-		perfect: 'gewandeld'
+		perfect: 'gewandeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'ver-delen',
@@ -348,7 +649,22 @@ let cases = [
 			pl: 'verdeelden',
 			sg: 'verdeelde'
 		},
-		perfect: 'verdeeld'
+		perfect: 'verdeeld',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'ge-loven',
@@ -364,7 +680,22 @@ let cases = [
 			pl: 'geloofden',
 			sg: 'geloofde'
 		},
-		perfect: 'geloofd'
+		perfect: 'geloofd',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: true,
+				pl: true
+			},
+			perfect: true
+		}
 	},
 	{
 		input: 'ver-liezen~ver-loren||verloren',
@@ -380,7 +711,22 @@ let cases = [
 			pl: 'verloren',
 			sg: 'verloor'
 		},
-		perfect: 'verloren'
+		perfect: 'verloren',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'zien~zagen|~zag',
@@ -396,7 +742,22 @@ let cases = [
 			pl: 'zagen',
 			sg: 'zag'
 		},
-		perfect: 'gezien'
+		perfect: 'gezien',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'doen~deden||gedaan',
@@ -412,7 +773,22 @@ let cases = [
 			pl: 'deden',
 			sg: 'deed'
 		},
-		perfect: 'gedaan'
+		perfect: 'gedaan',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'gaan~gingen',
@@ -428,7 +804,22 @@ let cases = [
 			pl: 'gingen',
 			sg: 'ging'
 		},
-		perfect: 'gegaan'
+		perfect: 'gegaan',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'staan~stonden',
@@ -444,7 +835,22 @@ let cases = [
 			pl: 'stonden',
 			sg: 'stond'
 		},
-		perfect: 'gestaan'
+		perfect: 'gestaan',
+		regular: {
+			present: {
+				sg: {
+					first: true,
+					second: true,
+					third: true
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	},
 	{
 		input: 'kunnen~konden|kan,,kan~kon|gekund',
@@ -460,7 +866,22 @@ let cases = [
 			pl: 'konden',
 			sg: 'kon'
 		},
-		perfect: 'gekund'
+		perfect: 'gekund',
+		regular: {
+			present: {
+				sg: {
+					first: false,
+					second: true,
+					third: false
+				},
+				pl: true
+			},
+			past: {
+				sg: false,
+				pl: false
+			},
+			perfect: false
+		}
 	}
 ];
 

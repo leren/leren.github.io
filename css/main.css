@@ -8,12 +8,15 @@ h1, h2,
 
 h1 {
 	font-size: 3rem;
-	font-weight: 400;
 }
 
 h2 {
 	font-size: 2rem;
-	font-weight: 400;
+}
+
+h3 {
+	font-size: 1rem;
+	font-weight: 500;
 }
 
 header,
@@ -39,10 +42,35 @@ footer {
 	font-size: 3rem;
 }
 
-main {
-	opacity: 0;
-	transition-property: opacity;
-	transition-duration: 150ms;
+#exercise {
+	display: none;
+}
+
+.sentence-case::first-letter {
+	text-transform: uppercase;
+}
+
+#expl-verb i.material-icons {
+	font-size: 1.35rem;
+}
+
+#expl-verb b {
+	font-weight: 500;
+}
+
+.conj-regular {
+	color: #311b92;
+}
+
+.conj-irregular {
+	color: #880e4f;
+}
+
+a[data-verb] {
+	text-decoration: none;
+	border-bottom: 1px dotted;
+	color: black;
+	cursor: pointer;
 }
 
 div.feedback {

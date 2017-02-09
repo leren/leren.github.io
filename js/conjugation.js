@@ -4,8 +4,8 @@ let conj = (pattern) => {
 	let infinitive = infinitivePattern.replace('-', '');
 	let infinitivePastPattern = groups[2];
 	let { stem, ending } = makeStem(infinitivePattern);
-	let first, second, third;;
-
+	let first, second, third;
+	
 	if (groups[3]) {
 		let parts = groups[3].split(',');
 
@@ -55,7 +55,22 @@ let conj = (pattern) => {
 			pl: infinitivePast,
 			sg: stemPast
 		},
-		perfect
+		perfect,
+		regular: {
+			present: {
+				sg: {
+					first: !first,
+					second: !second,
+					third: !third
+				},
+				pl: true
+			},
+			past: {
+				sg: !groups[2] && !groups[4],
+				pl: !groups[2]
+			},
+			perfect: !groups[2] && !groups[4] && !groups[5]
+		}
 	};
 };
 
