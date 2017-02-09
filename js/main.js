@@ -56,7 +56,11 @@ let createExercise = data => {
 		$(el).find("ul").addClass("collection").find("li").addClass("collection-item");
 	});
 
-	document.querySelectorAll("a[data-verb]").forEach(el => el.addEventListener("click", showVerb));
+	document.querySelectorAll("a[data-verb]").forEach(el => {
+		el.addEventListener("click", showVerb);
+		el.addEventListener("touchstart", showVerb);
+	});
+
 	loaderEl.style.display = "none";
 
 	if (!questions) {
@@ -107,7 +111,12 @@ let createExercise = data => {
 	};
 
 	phraseEl.innerHTML = phrase.sentenceHTML;
-	phraseEl.querySelectorAll("a[data-verb]").forEach(el => el.addEventListener("click", showVerb));
+	
+	phraseEl.querySelectorAll("a[data-verb]").forEach(el => {
+		el.addEventListener("click", showVerb);
+		el.addEventListener("touchstart", showVerb);
+	});
+
 	// phraseEl.innerHTML += `<br>${answer}`;
 	answerEl.value = "";
 	answerEl.focus();
