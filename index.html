@@ -18,7 +18,17 @@
 					<a class="brand-logo right hide-on-large-only"><i class="material-icons">school</i></a>
 					<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 				</div>
-				<ul id="nav-mobile" class="side-nav fixed">
+				<ul id="nav" class="side-nav fixed hide-on-med-and-down">
+					<li id="logo" class="center-align deep-purple-text text-darken-4"><i class="material-icons">school</i></li>
+					<!--<li><a class="subheader">Verb basics</a></li>-->
+					<li><a href="#">Introduction</a></li>
+					<!--<li><a href="#">Onvoltooid tegenwoordige tijd</a></li>
+					<li><a href="#">Onvoltooid verleden tijd</a></li>
+					<li><a href="#">Voltooid tegenwoordige tijd</a></li>
+					<li><div class="divider"></div></li>-->
+					<li><a href="#/asking-questions">Asking questions</a></li>
+				</ul>
+				<ul id="nav-mobile" class="side-nav fixed hide-on-large-only">
 					<li id="logo" class="center-align deep-purple-text text-darken-4"><i class="material-icons">school</i></li>
 					<!--<li><a class="subheader">Verb basics</a></li>-->
 					<li><a href="#">Introduction</a></li>
@@ -69,7 +79,7 @@
 		<script src="/js/main.js"></script>
 		<script>
 			$(document).ready(() => {
-				$(".button-collapse").sideNav();
+				$(".button-collapse").sideNav({ closeOnClick: true });
 				window.templates = {
 					verb: $('#template-verb').html()
 				};
