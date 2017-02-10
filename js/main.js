@@ -56,10 +56,12 @@ let createExercise = data => {
 		$(el).find("ul").addClass("collection").find("li").addClass("collection-item");
 	});
 
-	document.querySelectorAll("a[data-verb]").forEach(el => {
-		el.addEventListener("click", showVerb);
-		el.addEventListener("touchstart", showVerb);
-	});
+	$("a[data-verb]").on("touchstart click", showVerb);
+
+	// document.querySelectorAll("a[data-verb]").forEach(el => {
+	// 	el.addEventListener("click", showVerb);
+	// 	el.addEventListener("touchstart", showVerb);
+	// });
 
 	loaderEl.style.display = "none";
 
@@ -111,11 +113,13 @@ let createExercise = data => {
 	};
 
 	phraseEl.innerHTML = phrase.sentenceHTML;
-	
-	phraseEl.querySelectorAll("a[data-verb]").forEach(el => {
-		el.addEventListener("click", showVerb);
-		el.addEventListener("touchstart", showVerb);
-	});
+
+	$(phraseEl).find("a[data-verb]").on("touchstart click", showVerb);
+
+	// phraseEl.querySelectorAll("a[data-verb]").forEach(el => {
+	// 	el.addEventListener("click", showVerb);
+	// 	el.addEventListener("touchstart", showVerb);
+	// });
 
 	// phraseEl.innerHTML += `<br>${answer}`;
 	answerEl.value = "";
