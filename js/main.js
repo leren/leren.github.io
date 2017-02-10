@@ -56,7 +56,7 @@ let createExercise = data => {
 		$(el).find("ul").addClass("collection").find("li").addClass("collection-item");
 	});
 
-	$("a[data-verb]").on("touchstart click", showVerb);
+	$("a[data-verb]").click(showVerb);
 
 	// document.querySelectorAll("a[data-verb]").forEach(el => {
 	// 	el.addEventListener("click", showVerb);
@@ -114,7 +114,7 @@ let createExercise = data => {
 
 	phraseEl.innerHTML = phrase.sentenceHTML;
 
-	$(phraseEl).find("a[data-verb]").on("touchstart click", showVerb);
+	$(phraseEl).find("a[data-verb]").click(showVerb);
 
 	// phraseEl.querySelectorAll("a[data-verb]").forEach(el => {
 	// 	el.addEventListener("click", showVerb);
