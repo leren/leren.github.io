@@ -56,7 +56,7 @@ let createExercise = data => {
 		$(el).find("ul").addClass("collection").find("li").addClass("collection-item");
 	});
 
-	$("a[data-verb]").click(showVerb);
+	//$(displayEls).find("a[data-verb]").click(showVerb);
 
 	// document.querySelectorAll("a[data-verb]").forEach(el => {
 	// 	el.addEventListener("click", showVerb);
@@ -114,7 +114,7 @@ let createExercise = data => {
 
 	phraseEl.innerHTML = phrase.sentenceHTML;
 
-	$(phraseEl).find("a[data-verb]").click(showVerb);
+	//$(phraseEl).find("a[data-verb]").click(showVerb);
 
 	// phraseEl.querySelectorAll("a[data-verb]").forEach(el => {
 	// 	el.addEventListener("click", showVerb);
@@ -126,8 +126,8 @@ let createExercise = data => {
 	answerEl.focus();
 };
 
-let showVerb = e => {
-	let infinitive = e.target.dataset.verb;
+let showVerb = target => {
+	let infinitive = target.dataset.verb;
 	let verb = conj(verbs.find(v => v.search(`^${infinitive}\\b`) === 0));
 
 	verb.regularTenses = [];
@@ -214,7 +214,7 @@ let makeRandomSentence = (grammarSource, subjects, verbs) => {
 			let verb = makeVerb(definition, subjectMap[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
-			sentenceHTML = sentenceHTML.replace(element[0], `<a data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
+			sentenceHTML = sentenceHTML.replace(element[0], `<a onclick="showVerb(this)" data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
 			verbMap[element[2]] = verb;
 		}
 
@@ -259,7 +259,7 @@ let makeSentence = (grammarSource, subjects, verbs, variables) => {
 			let verb = makeVerb(verbs[element[2]], subjects[element[2]], preferFirst);
 
 			sentence = sentence.replace(element[0], verb.value);
-			sentenceHTML = sentenceHTML.replace(element[0], `<a data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
+			sentenceHTML = sentenceHTML.replace(element[0], `<a onclick="showVerb(this)" data-verb="${verb.conjugation.present.pl}">${verb.value}</a>`);
 		}
 
 		if (type === "var") {

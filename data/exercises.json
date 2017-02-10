@@ -2,14 +2,14 @@
 	"home": {
 		"title": "Learning Dutch",
 		"intro": [
-			"Click on an underlined verb to learn more about it. So whenever you see a verb like <a data-verb=\"leren\">leren</a>, click on it to see information about its conjugations.",
+			"Click on an underlined verb to learn more about it. So whenever you see a verb like <a onclick=\"showVerb(this)\" data-verb=\"leren\">leren</a>, click on it to see information about its conjugations.",
 			"\n\n",
 			"Try it on these verbs to see how it works:",
 			"\n\n",
-			"* De kinderen <a data-verb=\"zijn\">zijn</a> vrolijk.\n",
-			"* <a data-verb=\"hebben\">Hebben</a> jullie trek in pannenkoeken?\n",
-			"* Ze <a data-verb=\"lopen\">liep</a> vanochtend op het strand.\n",
-			"* Hij <a data-verb=\"werken\">werkt</a> vijf dagen per week.\n"
+			"* De kinderen <a onclick=\"showVerb(this)\" data-verb=\"zijn\">zijn</a> vrolijk.\n",
+			"* <a onclick=\"showVerb(this)\" data-verb=\"hebben\">Hebben</a> jullie trek in pannenkoeken?\n",
+			"* Ze <a onclick=\"showVerb(this)\" data-verb=\"lopen\">liep</a> vanochtend op het strand.\n",
+			"* Hij <a onclick=\"showVerb(this)\" data-verb=\"werken\">werkt</a> vijf dagen per week.\n"
 		]
 	},
 	"asking-questions": {
